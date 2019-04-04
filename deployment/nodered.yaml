@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nodered 
+spec:
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: nodered
+    spec: 
+      containers:
+      - name: nodered
+        image: nodered/node-red-docker:latest
+        ports:
+        - containerPort: 1880
+        volumeMounts:
+        - mountPath: /mnt/azure/nodered_home
+          name: nodered-home
+      volumes:
+      - name: nodered-home 
+        persistentVolumeClaim: 
+          claimName: azure-managed-disk-node

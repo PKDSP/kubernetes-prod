@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jenkins-ingress
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: jenkins-ingress.e39194dd14114fa79df1.southeastasia.aksapp.io
+    http:
+      paths:
+      - backend:
+          serviceName: jenkins-ui
+          servicePort: 8080
+        path: /

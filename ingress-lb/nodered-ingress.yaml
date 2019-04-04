@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nodered-ingress
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: nodered-ingress.e39194dd14114fa79df1.southeastasia.aksapp.io
+    http:
+      paths:
+      - backend:
+          serviceName: nodered
+          servicePort: 1880
+        path: /
